@@ -1,0 +1,119 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: var(--header-height);
+  bottom: 0;
+  width: var(--sidebar-width);
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 36px;
+  z-index: 50;
+  background: var(--bg);
+}
+
+.sidebar-nav {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+/* sliding indicator bar */
+.sidebar-indicator {
+  position: absolute;
+  left: 0;
+  width: 1.5px;
+  background: var(--accent);
+  border-radius: 1px;
+  pointer-events: none;
+  transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-link {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  padding: 8px 0 8px 12px;
+  transition: color 0.15s ease;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.sidebar-link:hover {
+  color: var(--text-primary);
+}
+
+.sidebar-link.active {
+  color: var(--text-primary);
+}
+
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-contact {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #999999;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.sidebar-contact:hover {
+  color: var(--text-primary);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    top: auto;
+  }
+
+  .sidebar-indicator {
+    display: none;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 20px;
+    flex: 0;
+  }
+
+  .sidebar-link {
+    padding: 16px 0;
+    font-size: 11px;
+    border-bottom: 1.5px solid transparent;
+  }
+
+  .sidebar-link.active {
+    border-bottom-color: var(--accent);
+  }
+
+  .sidebar-bottom {
+    flex-direction: row;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 540px) {
+  .sidebar-bottom {
+    display: none;
+  }
+}

@@ -1,0 +1,58 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  background: var(--bg);
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.site-header.hidden {
+  transform: translateY(-100%);
+}
+
+.header-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.header-name {
+  font-size: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.header-role {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    padding: 0 24px;
+  }
+
+  .header-name {
+    font-size: 28px;
+  }
+
+  .header-role {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+}
