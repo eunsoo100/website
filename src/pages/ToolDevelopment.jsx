@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import './ToolDevelopment.css'
-import autoRigThumb from '../images/tools/auto_rig_thumbnail.png'
-import gridFillThumb from '../images/tools/grid_fill_thumbnail.png'
-import sceneAssemblyThumb from '../images/tools/scene_assembly_thumbnail.png'
+import autoRigThumb from '../images/tools/auto_rig_thumbnail_low.png'
+import gridFillThumb from '../images/tools/grid_fill_thumbnail_low.png'
+import sceneAssemblyThumb from '../images/tools/scene_assembly_thumbnail_low.png'
 
 const tools = [
   {
