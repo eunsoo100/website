@@ -31,7 +31,7 @@ function DemoReel() {
         <div className="info-group">
           <p className="info-label">Projects</p>
           <p className="info-item">Rewired (2026)</p>
-          <p className="info-item">Haetae (2026)</p>
+          <p className="info-item">Mr. Kim and Haetae (2026)</p>
         </div>
 
         <div className="info-group">

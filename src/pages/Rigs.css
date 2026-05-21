@@ -1,0 +1,123 @@
+.rigs-page {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  min-height: calc(100svh - var(--header-height));
+  padding: 72px 48px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.rigs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 24px;
+}
+
+.rig-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rig-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #111;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rig-thumb-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
+}
+
+.rig-wip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rig-wip-box {
+  position: absolute;
+  inset: 0;
+  border-radius: 45%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.rig-wip-text {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgba(240, 240, 240, 0.75);
+}
+
+.rig-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rig-title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.rig-type {
+  font-size: 12px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.rig-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.rig-tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #646464;
+  background: #141414;
+  padding: 4px 8px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .rigs-page {
+    padding: 48px 24px 60px;
+  }
+
+  .rigs-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

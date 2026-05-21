@@ -58,7 +58,6 @@ function ToolDevelopment() {
   return (
     <div className="tool-dev-page">
       <h1 className="page-title-sm">Tool Development</h1>
-      <div className="tool-divider" />
       <div className="tool-list">
         {tools.map((tool, i) => (
           <ToolCard key={i} tool={tool} />
