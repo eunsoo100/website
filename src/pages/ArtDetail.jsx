@@ -64,9 +64,10 @@ const artDetails = {
         src: untitled_02, 
         caption: 'Untitled(2020) 20″x30″, Acrylic and oil paint on canvas' 
       },
-      { type: 'image', 
-        src: untitled_03, 
-        caption: 'Untitled(2019) 20″x15″, Watercolor on paper' },
+      // { type: 'image', 
+      //   src: untitled_03, 
+      //   caption: 'Untitled(2019) 20″x15″, Watercolor on paper' 
+      // },
     ],
   },
   'life-drawings': {
