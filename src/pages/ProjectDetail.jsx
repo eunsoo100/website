@@ -129,16 +129,23 @@ const projectDetails = {
   }
 }
 
-function Lightbox({ src, alt, onClose }) {
+function Lightbox({ images, initialIndex = 0, onClose }) {
+  const [current, setCurrent] = useState(initialIndex)
+  const multi = images.length > 1
+
   useEffect(() => {
-    const onKey = e => { if (e.key === 'Escape') onClose() }
+    const onKey = e => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft') setCurrent(i => (i - 1 + images.length) % images.length)
+      if (e.key === 'ArrowRight') setCurrent(i => (i + 1) % images.length)
+    }
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
     }
-  }, [onClose])
+  }, [onClose, images.length])
 
   return createPortal(
     <div className="lightbox-overlay" onClick={onClose}>
@@ -147,12 +154,21 @@ function Lightbox({ src, alt, onClose }) {
           <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
-      <img
-        src={src}
-        alt={alt}
-        className="lightbox-img"
-        onClick={e => e.stopPropagation()}
-      />
+      {multi && (
+        <button className="lightbox-nav lightbox-nav--prev" onClick={e => { e.stopPropagation(); setCurrent(i => (i - 1 + images.length) % images.length) }} aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      )}
+      <img src={images[current]} alt={`${current + 1}`} className="lightbox-img" onClick={e => e.stopPropagation()} />
+      {multi && (
+        <button className="lightbox-nav lightbox-nav--next" onClick={e => { e.stopPropagation(); setCurrent(i => (i + 1) % images.length) }} aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      )}
     </div>,
     document.body
   )
@@ -201,7 +217,7 @@ function SingleImage({ src, caption }) {
         <img src={src} alt={caption || ''} className="slider-img" onClick={() => setLightbox(true)} />
       </div>
       {caption && <p className="detail-media-caption">{caption}</p>}
-      {lightbox && <Lightbox src={src} alt={caption || ''} onClose={() => setLightbox(false)} />}
+      {lightbox && <Lightbox images={[src]} initialIndex={0} onClose={() => setLightbox(false)} />}
     </div>
   )
 }
@@ -238,8 +254,8 @@ function ImageSlider({ images, caption }) {
       </div>
       {lightbox && (
         <Lightbox
-          src={images[current]}
-          alt={`Slide ${current + 1}`}
+          images={images}
+          initialIndex={current}
           onClose={() => setLightbox(false)}
         />
       )}

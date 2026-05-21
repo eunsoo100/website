@@ -14,6 +14,7 @@ const projects = [
     roles: ['Director', 'Production & Pipeline Manager', 'Rigger', 'Concept Artist', 'Technical Artist'],
     thumb: rewiredThumb,
     comingSoon: false,
+    locked: true,
   },
   {
     id: 'those-who-see',
@@ -23,6 +24,7 @@ const projects = [
     roles: ['Rigger', 'Concept Artist'],
     thumb: thoseWhoSeeThumb,
     comingSoon: false,
+    locked: false,
   },
   {
     id: 'spare-time',
@@ -31,7 +33,8 @@ const projects = [
     type: '2nd Year Short Animation Project',
     roles: ['Rigger', 'Technical Artist'],
     thumb: spareTimeThumb,
-    comingSoon: false,
+    comingSoon: false,  
+    locked: false,
   },
   {
     id: 'harvesture',
@@ -41,8 +44,18 @@ const projects = [
     roles: ['Game Creator'],
     thumb: harvestureThumb,
     comingSoon: false,
+    locked: false,
   },
 ]
+
+function LockIcon() {
+  return (
+    <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </svg>
+  )
+}
 
 function CardInner({ project }) {
   return (
@@ -53,6 +66,11 @@ function CardInner({ project }) {
         )}
         {project.comingSoon && (
           <span className="project-coming-soon">Coming Soon</span>
+        )}
+        {project.locked && (
+          <div className="project-thumb-lock">
+            <LockIcon />
+          </div>
         )}
       </div>
       <div className="project-meta">

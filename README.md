@@ -1,6 +1,6 @@
 # Eunsoo Baek - Portfolio Website
 
-Rigging Artist & TD Portfolio
+Rigging & Technical Artist Portfolio
 
 ## Tech Stack
 - React

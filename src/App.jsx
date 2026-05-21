@@ -6,7 +6,9 @@ import Projects from './pages/Projects'
 import ProjectDetail from './pages/ProjectDetail'
 import Rigs from './pages/Rigs'
 import ToolDevelopment from './pages/ToolDevelopment'
+import ToolDetail from './pages/ToolDetail'
 import Art from './pages/Art'
+import ArtDetail from './pages/ArtDetail'
 import About from './pages/About'
 import './App.css'
 
@@ -23,7 +25,9 @@ function App() {
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/rigs" element={<Rigs />} />
             <Route path="/tool-development" element={<ToolDevelopment />} />
+            <Route path="/tool-development/:id" element={<ToolDetail />} />
             <Route path="/art" element={<Art />} />
+            <Route path="/art/:id" element={<ArtDetail />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </main>
