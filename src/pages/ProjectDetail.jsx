@@ -35,7 +35,7 @@ const projectDetails = {
     date: 'May 2026',
     type: 'Grad Film Project',
     roles: ['Director', 'Production & Pipeline Manager', 'Rigger', 'Concept Artist', 'Technical Artist'],
-    password: 'spaghetti0303',
+    password: 'eunsoo100',
     sections: [
       {
         media: [{ type: 'video', embedUrl: 'https://www.youtube.com/embed/hIPCRZhBz2I' }],
