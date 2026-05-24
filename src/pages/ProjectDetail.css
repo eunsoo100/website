@@ -396,13 +396,41 @@
   align-items: center;
 }
 
+.password-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-eye {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+
+.password-eye:hover {
+  color: var(--text-primary);
+}
+
+.password-eye svg {
+  width: 15px;
+  height: 15px;
+}
+
 .password-input {
   background: #111;
   border: 1px solid var(--border);
   border-radius: 2px;
   color: var(--text-primary);
   font-size: 13px;
-  padding: 8px 12px;
+  padding: 8px 36px 8px 12px;
   outline: none;
   width: 200px;
   transition: border-color 0.15s;
