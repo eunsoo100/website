@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Rigs.css'
 import kikoThumb from '../images/rigs/kiko_thumbnail.png'
 import tobiThumb from '../images/rigs/T0B1_thumbnail.png'
@@ -10,6 +11,7 @@ const rigs = [
     type: 'Biped Human Rig',
     tags: ['Rewired'],
     thumb: kikoThumb,
+    wip: false,
   },
   {
     id: 'tobi',
@@ -17,6 +19,7 @@ const rigs = [
     type: 'Robot Rig',
     tags: ['Rewired'],
     thumb: tobiThumb,
+    wip: true,
   },
   {
     id: 'haetae',
@@ -24,18 +27,21 @@ const rigs = [
     type: 'Quadruped Rig',
     tags: ['Mr.Kim and Haetae'],
     thumb: haetaeThumb,
+    wip: true,
   },
 ]
 
-function RigCard({ rig }) {
+function RigCardInner({ rig }) {
   return (
-    <div className="rig-card">
+    <>
       <div className="rig-thumb">
         {rig.thumb && <img src={rig.thumb} alt={rig.title} className="rig-thumb-img" />}
-        <div className="rig-wip">
-          <div className="rig-wip-box" />
-          <span className="rig-wip-text">Work in Progress</span>
-        </div>
+        {rig.wip && (
+          <div className="rig-wip">
+            <div className="rig-wip-box" />
+            <span className="rig-wip-text">Work in Progress</span>
+          </div>
+        )}
       </div>
       <div className="rig-meta">
         <h2 className="rig-title">{rig.title}</h2>
@@ -48,6 +54,21 @@ function RigCard({ rig }) {
           </div>
         )}
       </div>
+    </>
+  )
+}
+
+function RigCard({ rig }) {
+  if (!rig.wip) {
+    return (
+      <Link to={`/rigs/${rig.id}`} className="rig-card rig-card--link">
+        <RigCardInner rig={rig} />
+      </Link>
+    )
+  }
+  return (
+    <div className="rig-card">
+      <RigCardInner rig={rig} />
     </div>
   )
 }

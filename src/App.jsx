@@ -5,6 +5,7 @@ import DemoReel from './pages/DemoReel'
 import Projects from './pages/Projects'
 import ProjectDetail from './pages/ProjectDetail'
 import Rigs from './pages/Rigs'
+import RigDetail from './pages/RigDetail'
 import ToolDevelopment from './pages/ToolDevelopment'
 import ToolDetail from './pages/ToolDetail'
 import Art from './pages/Art'
@@ -24,6 +25,7 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/rigs" element={<Rigs />} />
+            <Route path="/rigs/:id" element={<RigDetail />} />
             <Route path="/tool-development" element={<ToolDevelopment />} />
             <Route path="/tool-development/:id" element={<ToolDetail />} />
             <Route path="/art" element={<Art />} />

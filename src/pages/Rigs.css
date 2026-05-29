@@ -21,6 +21,20 @@
   gap: 14px;
 }
 
+.rig-card--link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.rig-card--link .rig-thumb-img {
+  transition: opacity 0.2s;
+}
+
+.rig-card--link:hover .rig-thumb-img {
+  opacity: 0.75;
+}
+
 .rig-thumb {
   position: relative;
   width: 100%;
