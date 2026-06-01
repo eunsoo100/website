@@ -1,25 +1,76 @@
+import { Link } from 'react-router-dom'
 import './DemoReel.css'
+import kikoThumb from '../images/rigs/kiko_thumbnail.png'
+import rewiredThumb from '../images/rewired/rewired_thumbnail.png'
+import autoRigThumb from '../images/tools/auto_rig_thumbnail_low.png'
 
 function DemoReel() {
   return (
     <div className="demoreel-page">
-      <div className="demoreel-header">
-        <h1 className="demoreel-title">Demo Reel</h1>
-        <p className="demoreel-year">2026</p>
-      </div>
-
-      <div className="video-container">
+      <div className="demoreel-section">
+        <div className="demoreel-header demoreel-header--spread">
+          <div className="demoreel-header">
+            <h2 className="demoreel-title demoreel-title--sm">Rigging Demo Reel</h2>
+            <p className="demoreel-year">2026</p>
+          </div>
+          <a
+            href="https://vimeo.com/1152759852?fl=pl&fe=sh"
+            target="_blank"
+            rel="noreferrer"
+            className="demoreel-full-btn"
+          >
+            Watch Full Version ↗
+          </a>
+        </div>
         <div className="video-wrapper">
           <iframe
-            src="https://player.vimeo.com/video/1152759852?title=0&byline=0&portrait=0"
-            title="Demo Reel 2026"
+            src="https://player.vimeo.com/video/1197455097?title=0&byline=0&portrait=0"
+            title="Rigging Demo Reel 2026"
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
           />
         </div>
+        <div className="rig-shortcut-row">
+          <Link to="/rigs/kiko" className="rig-shortcut">
+            <img src={kikoThumb} alt="Kiko" className="rig-shortcut-thumb" />
+            <div className="rig-shortcut-text">
+              <span className="rig-shortcut-label">Featured Rig</span>
+              <span className="rig-shortcut-name">Kiko →</span>
+            </div>
+          </Link>
+          <Link to="/projects/rewired" className="rig-shortcut">
+            <img src={rewiredThumb} alt="Rewired" className="rig-shortcut-thumb" />
+            <div className="rig-shortcut-text">
+              <span className="rig-shortcut-label">Project</span>
+              <span className="rig-shortcut-name">Rewired →</span>
+            </div>
+          </Link>
+        </div>
       </div>
 
-      {/* <p className="demoreel-subtitle">Rigging | TA Demo Reel - Eunsoo Baek</p> */}
+      <div className="demoreel-section">
+        <div className="demoreel-header">
+          <h2 className="demoreel-title demoreel-title--sm">Technical Artist Demo Reel</h2>
+          <p className="demoreel-year">2026</p>
+        </div>
+        <div className="video-wrapper">
+          <iframe
+            src="https://player.vimeo.com/video/1197454510?title=0&byline=0&portrait=0"
+            title="Technical Artist Demo Reel 2026"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+        <div className="rig-shortcut-row">
+          <Link to="/tool-development" className="rig-shortcut">
+            <img src={autoRigThumb} alt="Tool Development" className="rig-shortcut-thumb" />
+            <div className="rig-shortcut-text">
+              <span className="rig-shortcut-label">Tools</span>
+              <span className="rig-shortcut-name">Tool Development →</span>
+            </div>
+          </Link>
+        </div>
+      </div>
 
       <div className="demoreel-info">
         <div className="info-group">
