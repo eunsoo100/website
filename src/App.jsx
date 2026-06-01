@@ -11,6 +11,7 @@ import ToolDetail from './pages/ToolDetail'
 import Art from './pages/Art'
 import ArtDetail from './pages/ArtDetail'
 import About from './pages/About'
+import FullReel from './pages/FullReel'
 import './App.css'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/art" element={<Art />} />
             <Route path="/art/:id" element={<ArtDetail />} />
             <Route path="/about" element={<About />} />
+            <Route path="/full-reel" element={<FullReel />} />
           </Routes>
         </main>
       </div>

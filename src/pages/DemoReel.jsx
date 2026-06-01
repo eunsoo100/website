@@ -1,10 +1,22 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import './DemoReel.css'
 import kikoThumb from '../images/rigs/kiko_thumbnail.png'
 import rewiredThumb from '../images/rewired/rewired_thumbnail.png'
 import autoRigThumb from '../images/tools/auto_rig_thumbnail_low.png'
 
 function DemoReel() {
+  const location = useLocation()
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const section = params.get('section')
+    if (section) {
+      const el = document.getElementById(section)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }, [location.search])
+
   return (
     <div className="demoreel-page">
       <div className="demoreel-section">
@@ -13,14 +25,9 @@ function DemoReel() {
             <h2 className="demoreel-title demoreel-title--sm">Rigging Demo Reel</h2>
             <p className="demoreel-year">2026</p>
           </div>
-          <a
-            href="https://vimeo.com/1152759852?fl=pl&fe=sh"
-            target="_blank"
-            rel="noreferrer"
-            className="demoreel-full-btn"
-          >
-            Watch Full Version ↗
-          </a>
+          <Link to="/full-reel" className="demoreel-full-btn">
+            Watch Full Version →
+          </Link>
         </div>
         <div className="video-wrapper">
           <iframe
@@ -48,7 +55,7 @@ function DemoReel() {
         </div>
       </div>
 
-      <div className="demoreel-section">
+      <div className="demoreel-section" id="ta" style={{ scrollMarginTop: 'calc(var(--header-height) + 24px)' }}>
         <div className="demoreel-header">
           <h2 className="demoreel-title demoreel-title--sm">Technical Artist Demo Reel</h2>
           <p className="demoreel-year">2026</p>
