@@ -13,7 +13,7 @@ function FullReel() {
 
       <div className="fullreel-wrapper">
         <iframe
-          src="https://player.vimeo.com/video/1152759852?title=0&byline=0&portrait=0"
+          src="https://player.vimeo.com/video/1198679345?title=0&byline=0&portrait=0"
           title="Demo Reel 2026 — Full Version"
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
