@@ -2,15 +2,25 @@ import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import './ProjectDetail.css'
 import kikoWalkCycle from '../images/kiko_rig/kiko_walk_cycle.gif'
-import kikoFaceDef from '../images/kiko_rig/kiko_face_def.gif'
-import elbowDefSide from '../images/kiko_rig/elbow_def_side.gif'
-import elbowDefTop from '../images/kiko_rig/elbow_def_top.gif'
-import kneeDefFront from '../images/kiko_rig/knee_def_front.gif'
-import kneeDefSide from '../images/kiko_rig/knee_def_side.gif'
-import shoulderDefault from '../images/kiko_rig/shoulder_default.gif'
-import shoulderJoint from '../images/kiko_rig/shoulder_joint.gif'
-import shoulderBlendshape from '../images/kiko_rig/shoulder_blendshape.gif'
-import shoulderBack from '../images/kiko_rig/shoulder_back.gif'
+import kikoFaceDef from '../images/kiko_rig/kiko_face_def_v3_compressed.gif'
+import armDef from '../images/kiko_rig/arm_def_v001.gif'
+import kneeDefFront from '../images/kiko_rig/knee_def_front_v001.gif'
+import kneeDefSide from '../images/kiko_rig/knee_def_side_v001.gif'
+import hipDefFront from '../images/kiko_rig/hip_def_front_v001.gif'
+import hipDefSide from '../images/kiko_rig/hip_def_side_v001.gif'
+import shoulderFrJnt from '../images/kiko_rig/shoulder_def_fr_jnt_v001.gif'
+import shoulderFrClean from '../images/kiko_rig/shoulder_def_fr_clean_v001.gif'
+import shoulderBkClean from '../images/kiko_rig/shoulder_def_bk_clean_v001.gif'
+import kikoStill001 from '../images/kiko_rig/kiko_still_002.png'
+import kikoStill002 from '../images/kiko_rig/kiko_still_001.png'
+import kikoStill003 from '../images/kiko_rig/kiko_still_003.png'
+import kikoStill004 from '../images/kiko_rig/kiko_still_004.png'
+import kikoStill006 from '../images/kiko_rig/kiko_still_005.png'
+import kikoStill007 from '../images/kiko_rig/kiko_still_006.png'
+import kikoStill008 from '../images/kiko_rig/kiko_still_007.png'
+import kikoStill005 from '../images/kiko_rig/kiko_still_008.png'
+
+const kikoStills = [kikoStill001, kikoStill002, kikoStill003, kikoStill004, kikoStill005, kikoStill006, kikoStill007, kikoStill008]
 
 const rigDetails = {
   kiko: {
@@ -18,6 +28,7 @@ const rigDetails = {
     production: 'Rewired',
     type: 'Biped Human Rig',
     roles: [],
+    stills: kikoStills,
     heroGif: kikoWalkCycle,
     description: [
       'Kiko is the main character of the short animated film "Rewired". She is a scavenger girl who wonders around the wasteland collecting the scraps.',
@@ -49,19 +60,23 @@ const rigDetails = {
         heading: 'Deformation & Skinning',
         subsections: [
           {
-            gifs: [elbowDefSide, elbowDefTop],
-            gifAlts: ['Elbow deformation side', 'Elbow deformation top'],
+            gif: armDef,
             body: 'Blendshape based corrective shape',
           },
           {
-            gifs: [kneeDefFront, kneeDefSide],
+            gifsVertical: [kneeDefFront, kneeDefSide],
             gifAlts: ['Knee deformation front', 'Knee deformation side'],
             body: 'Blendshape based corrective shape',
           },
           {
+            gifsVertical: [hipDefFront, hipDefSide],
+            gifAlts: ['Hip deformation front', 'Hip deformation side'],
+            body: 'Blendshape based corrective shape',
+          },
+          {
             slider: {
-              gifs: [shoulderDefault, shoulderJoint, shoulderBlendshape, shoulderBack],
-              alts: ['Default', 'With Joints', 'With Blendshape', 'Back View'],
+              gifs: [shoulderFrJnt, shoulderFrClean, shoulderBkClean],
+              alts: ['Front — With Joints', 'Front — Clean', 'Back — Clean'],
             },
             body: 'Corrective joints + blendshape system for arms and shoulders deformation.',
           },
@@ -150,6 +165,17 @@ function RigDetail() {
 
       <div className="detail-divider" />
 
+      {rig.stills && (
+        <div className="rig-stills-block">
+          <div className="rig-stills-tile">
+            {rig.stills.map((src, i) => (
+              <img key={i} src={src} alt={`${rig.title} still ${i + 1}`} className="rig-still-img" />
+            ))}
+          </div>
+          <p className="rig-stills-caption">Film stills from <em>Rewired</em> (2026)</p>
+        </div>
+      )}
+
       {rig.heroGif && (
         <div className="detail-section">
           <img src={rig.heroGif} alt={`${rig.title} walk cycle`} className="rig-hero-gif" />
@@ -215,6 +241,20 @@ function RigDetail() {
                   {sub.gifs && (
                     <div className="rig-subsection-gif-grid">
                       {sub.gifs.map((g, k) => (
+                        <img
+                          key={k}
+                          src={g}
+                          alt={sub.gifAlts?.[k] ?? ''}
+                          className="rig-subsection-gif"
+                          style={{ cursor: 'zoom-in' }}
+                          onClick={() => setLightboxSrc(g)}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  {sub.gifsVertical && (
+                    <div className="rig-subsection-gif-stack">
+                      {sub.gifsVertical.map((g, k) => (
                         <img
                           key={k}
                           src={g}

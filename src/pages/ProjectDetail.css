@@ -446,6 +446,46 @@
   margin: 0;
 }
 
+.rig-subsection-gif-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rig-subsection-gif-stack .rig-subsection-gif {
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Rig film stills tile — 4-4 layout */
+.rig-stills-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rig-stills-tile {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.rig-still-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.rig-stills-caption {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: right;
+  letter-spacing: 0.02em;
+}
+
 /* Rig hero GIF */
 .rig-hero-gif {
   width: 100%;

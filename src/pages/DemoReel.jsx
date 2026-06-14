@@ -20,19 +20,14 @@ function DemoReel() {
   return (
     <div className="demoreel-page">
       <div className="demoreel-section">
-        <div className="demoreel-header demoreel-header--spread">
-          <div className="demoreel-header">
-            <h2 className="demoreel-title demoreel-title--sm">Rigging Demo Reel</h2>
-            <p className="demoreel-year">2026</p>
-          </div>
-          <Link to="/full-reel" className="demoreel-full-btn">
-            Watch Full Version →
-          </Link>
+        <div className="demoreel-header">
+          <h2 className="demoreel-title demoreel-title--sm">Demo Reel</h2>
+          <p className="demoreel-year">2026</p>
         </div>
         <div className="video-wrapper">
           <iframe
-            src="https://player.vimeo.com/video/1197455097?title=0&byline=0&portrait=0"
-            title="Rigging Demo Reel 2026"
+            src="https://player.vimeo.com/video/1152759852?title=0&byline=0&portrait=0"
+            title="Demo Reel 2026"
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
           />
