@@ -19,7 +19,7 @@ const rigs = [
     type: 'Robot Rig',
     tags: ['Rewired'],
     thumb: tobiThumb,
-    wip: true,
+    wip: false,
   },
   {
     id: 'haetae',
@@ -27,7 +27,7 @@ const rigs = [
     type: 'Quadruped Rig',
     tags: ['Mr.Kim and Haetae'],
     thumb: haetaeThumb,
-    wip: true,
+    wip: false,
   },
 ]
 

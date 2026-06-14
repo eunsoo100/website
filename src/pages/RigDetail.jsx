@@ -11,6 +11,14 @@ import hipDefSide from '../images/kiko_rig/hip_def_side_v001.gif'
 import shoulderFrJnt from '../images/kiko_rig/shoulder_def_fr_jnt_v001.gif'
 import shoulderFrClean from '../images/kiko_rig/shoulder_def_fr_clean_v001.gif'
 import shoulderBkClean from '../images/kiko_rig/shoulder_def_bk_clean_v001.gif'
+import haetaeCut from '../images/haetae_rig/haetae_cut.gif'
+import haetaeCut2 from '../images/haetae_rig/haetae_cut_2.gif'
+import haetaeCtrl from '../images/haetae_rig/haetae_ctrl.gif'
+import tobiCut from '../images/tobi_rig/tobi_cut.gif'
+import tobiCtrlRender from '../images/tobi_rig/tobi_ctrl_render_v001.gif'
+import tobiCtrl from '../images/tobi_rig/tobi_ctrl_v001.gif'
+import tobiEyes from '../images/tobi_rig/tobi_eyes_v001.gif'
+import tobiWheel from '../images/tobi_rig/tobi_wheel_v001.gif'
 import kikoStill001 from '../images/kiko_rig/kiko_still_002.png'
 import kikoStill002 from '../images/kiko_rig/kiko_still_001.png'
 import kikoStill003 from '../images/kiko_rig/kiko_still_003.png'
@@ -23,6 +31,70 @@ import kikoStill005 from '../images/kiko_rig/kiko_still_008.png'
 const kikoStills = [kikoStill001, kikoStill002, kikoStill003, kikoStill004, kikoStill005, kikoStill006, kikoStill007, kikoStill008]
 
 const rigDetails = {
+  haetae: {
+    title: 'Haetae',
+    production: 'Mr. Kim and Haetae',
+    type: 'Quadruped Rig',
+    roles: [],
+    gifs: [haetaeCut, haetaeCut2],
+    gifAlts: ['Haetae cut 1', 'Haetae cut 2'],
+    description: ['"Mr. Kim and Haetae" is a project by Team Haetae, who brought me on to handle the character rigging for both Haetae and Mr. Kim. This marked my first venture into quadruped/creature rigging, which was a genuinely challenging but rewarding learning curve.',
+                  "Coming from primarily biped work, I had to dive into research on quadruped movement, leg IK setups, claws, and how to translate Haetae's mythological design into a flexible, animator-friendly rig. There were definitely moments of trial and error, but working through those problems independently and landing on a rig that holds up in motion was incredibly satisfying.",
+                  "This project pushed me to grow my skill set in creature rigging, and I'm excited to keep building on it."],
+    sections: [
+      {
+        heading: 'Key Features',
+        gifs: [haetaeCtrl],
+        gifAlts: ['Haetae controls'],
+        keyFeatures: [
+          'IK/FK Hybrid Spine and Neck',
+          'Squash & Stretch Attributes',
+          'Corrective Shapes For Neck Rotate',
+          'Joint-Based Face Rig',
+          'Head Squash Attribute',
+          'IK/FK Legs',
+          'Foot Roll Attributes',
+          'Squash / Stretch Attributes',
+          'Breathing Control — Driven by Blend Shape',
+        ],
+      },
+    ],
+  },
+  tobi: {
+    title: 'T0B1',
+    production: 'Rewired',
+    type: 'Character Rig',
+    roles: [],
+    gifs: [tobiCut],
+    gifAlts: ['T0B1 cut'],
+    description: [
+      'T0B1 is the main character of the short animated film "Rewired". He is a small abandoned robot who is designed to make people feel happy. T0B1 encounters Kiko at a bar and starts following her journey.',
+    ],
+    sections: [
+      {
+        heading: 'Key Features',
+        gifs: [tobiCtrlRender, tobiCtrl],
+        gifAlts: ['T0B1 rig render', 'T0B1 controls'],
+        keyFeatures: [
+          'IK/FK Hybrid Arms',
+          'Stretchable IK Spine',
+        ],
+      },
+      {
+        heading: 'Rig Components',
+        subsections: [
+          {
+            gif: tobiEyes,
+            body: '4-sided eye shutter system',
+          },
+          {
+            gif: tobiWheel,
+            bodyList: ['Auto-Rotating Wheel', 'Built-in Motion Path Attribute'],
+          },
+        ],
+      },
+    ],
+  },
   kiko: {
     title: 'Kiko',
     production: 'Rewired',
@@ -60,6 +132,13 @@ const rigDetails = {
         heading: 'Deformation & Skinning',
         subsections: [
           {
+            slider: {
+              gifs: [shoulderFrJnt, shoulderFrClean, shoulderBkClean],
+              alts: ['Front — With Joints', 'Front', 'Back'],
+            },
+            body: 'Corrective joints + blendshape system for arms and shoulders deformation.',
+          },
+          {
             gif: armDef,
             body: 'Blendshape based corrective shape',
           },
@@ -72,13 +151,6 @@ const rigDetails = {
             gifsVertical: [hipDefFront, hipDefSide],
             gifAlts: ['Hip deformation front', 'Hip deformation side'],
             body: 'Blendshape based corrective shape',
-          },
-          {
-            slider: {
-              gifs: [shoulderFrJnt, shoulderFrClean, shoulderBkClean],
-              alts: ['Front — With Joints', 'Front — Clean', 'Back — Clean'],
-            },
-            body: 'Corrective joints + blendshape system for arms and shoulders deformation.',
           },
         ],
       },
@@ -182,7 +254,22 @@ function RigDetail() {
         </div>
       )}
 
-      {rig.description && (
+      {rig.gifs && (
+        <div className={rig.gifs.length > 1 ? 'rig-subsection-gif-grid' : undefined}>
+          {rig.gifs.map((g, i) => (
+            <img
+              key={i}
+              src={g}
+              alt={rig.gifAlts?.[i] ?? ''}
+              className="rig-subsection-gif"
+              style={{ cursor: 'zoom-in', maxWidth: '100%', margin: 0 }}
+              onClick={() => setLightboxSrc(g)}
+            />
+          ))}
+        </div>
+      )}
+
+      {rig.description && rig.description.length > 0 && (
         <div className="detail-description-block">
           {rig.description.map((para, i) => (
             <p key={i} className="detail-description">{para}</p>
@@ -221,6 +308,21 @@ function RigDetail() {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
+                </div>
+              )}
+
+              {section.gifs && (
+                <div className={section.gifs.length > 1 ? 'rig-subsection-gif-grid' : undefined}>
+                  {section.gifs.map((g, k) => (
+                    <img
+                      key={k}
+                      src={g}
+                      alt={section.gifAlts?.[k] ?? ''}
+                      className="rig-subsection-gif"
+                      style={{ cursor: 'zoom-in', maxWidth: '100%', margin: 0 }}
+                      onClick={() => setLightboxSrc(g)}
+                    />
+                  ))}
                 </div>
               )}
 
@@ -275,6 +377,13 @@ function RigDetail() {
                   )}
                   {sub.body && (
                     <p className="detail-section-body">{sub.body}</p>
+                  )}
+                  {sub.bodyList && (
+                    <ul className="tool-feature-list">
+                      {sub.bodyList.map((item, k) => (
+                        <li key={k} className="tool-feature-item">{item}</li>
+                      ))}
+                    </ul>
                   )}
                 </div>
               ))}

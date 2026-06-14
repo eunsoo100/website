@@ -4,6 +4,8 @@ import './DemoReel.css'
 import kikoThumb from '../images/rigs/kiko_thumbnail.png'
 import rewiredThumb from '../images/rewired/rewired_thumbnail.png'
 import autoRigThumb from '../images/tools/auto_rig_thumbnail_low.png'
+import haetaeThumb from '../images/rigs/haetae_thumbnail.png'
+import tobiThumb from '../images/rigs/T0B1_thumbnail.png'
 
 function DemoReel() {
   const location = useLocation()
@@ -45,6 +47,20 @@ function DemoReel() {
             <div className="rig-shortcut-text">
               <span className="rig-shortcut-label">Project</span>
               <span className="rig-shortcut-name">Rewired →</span>
+            </div>
+          </Link>
+          <Link to="/rigs/haetae" className="rig-shortcut">
+            <img src={haetaeThumb} alt="Haetae" className="rig-shortcut-thumb" />
+            <div className="rig-shortcut-text">
+              <span className="rig-shortcut-label">Featured Rig</span>
+              <span className="rig-shortcut-name">Haetae →</span>
+            </div>
+          </Link>
+          <Link to="/rigs/tobi" className="rig-shortcut">
+            <img src={tobiThumb} alt="T0B1" className="rig-shortcut-thumb" />
+            <div className="rig-shortcut-text">
+              <span className="rig-shortcut-label">Featured Rig</span>
+              <span className="rig-shortcut-name">T0B1 →</span>
             </div>
           </Link>
         </div>
