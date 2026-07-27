@@ -81,6 +81,7 @@ const toolDetails = {
       {
         title: 'Jaw',
         videoId: 'GlMDdMEJH-A',
+        caption: 'Character modelled by Makar Malicki',
         steps: [
           { 
             title: '1st step: Joint Placement',
@@ -305,6 +306,11 @@ function ToolDetail() {
               />
             </div>
           )}
+          {section.caption && <p className="detail-media-caption">{section.caption}</p>}
+          {section.note && (Array.isArray(section.note)
+            ? section.note.map((para, j) => <p key={j} className="detail-description">{para}</p>)
+            : <p className="detail-description">{section.note}</p>
+          )}
           {section.steps && section.steps.map((step, j) => (
             <div key={j} className="detail-section-step">
               {step.title && <h3 className="detail-step-title">{step.title}</h3>}
@@ -314,10 +320,6 @@ function ToolDetail() {
           ))}
           {section.image && (
             <MediaPlaceholder label="Image" />
-          )}
-          {section.note && (Array.isArray(section.note)
-            ? section.note.map((para, j) => <p key={j} className="detail-description">{para}</p>)
-            : <p className="detail-description">{section.note}</p>
           )}
         </div>
       ))}
