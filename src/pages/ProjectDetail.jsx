@@ -27,6 +27,8 @@ import cleoConceptArt from '../images/those_who_see/cleo_concept_art.png'
 import game_ca001 from '../images/harvesture/character design.jpg'
 import game_ca002 from '../images/harvesture/spring vege.jpg'
 import game_ca003 from '../images/harvesture/summer vege.jpg'
+import kikoThumb from '../images/rigs/kiko_thumbnail.png'
+import tobiThumb from '../images/rigs/T0B1_thumbnail.png'
 import './ProjectDetail.css'
 
 const projectDetails = {
@@ -35,17 +37,29 @@ const projectDetails = {
     date: 'May 2026',
     type: 'Grad Film Project',
     roles: ['Director', 'Production & Pipeline Manager', 'Rigger', 'Concept Artist', 'Technical Artist'],
+    rigShortcuts: [
+      { to: '/rigs/kiko', thumb: kikoThumb, name: 'Kiko' },
+      { to: '/rigs/tobi', thumb: tobiThumb, name: 'T0B1' },
+    ],
     // password: 'eunsoo100',
     sections: [
       {
+        title: 'Watch Full Film',
         media: [{ type: 'video', embedUrl: 'https://www.youtube.com/embed/hIPCRZhBz2I' }],
-      },
+        logline: 'After learning about the high value of power cores in her post-apocalyptic world, a lonely, money hungry scavenger must choose between becoming infinitely rich or saving the only friend who has ever stood by her side.',
+        note: [
+          "This is our team Scavengers' graduation film project, which I directed and managed the production and pipeline. I also contributed to rigging, concept art, and technical art. This film was made with a team of 8 talented artists, and it took us 1 year to complete. We won the Presidents Media Award - Best in 3D Animation, Best in Animation, Best in Look Development, and Best in Sound Design at Emily Carr University.",
+          "Through this project, our team learned to collaborate closely and pushed each other to grow. I'm proud of what we built together!",
+        ]
+        },
       {
+        title: 'Environment Concept Art',
         type: 'slider',
         images: [env_ca002, env_ca005, env_ca001, env_ca003, env_ca004],
         caption: 'Environment concept art',
       },
       {
+        title: 'Character Concept Art',
         type: 'slider',
         images: [char_ca001, char_ca002],
         caption: 'Character concept art',
@@ -364,11 +378,32 @@ function ProjectDetail() {
         .filter(s => s.media?.some(m => m.type === 'video'))
         .map((section, i) => (
           <div key={i} className="detail-section">
+            {section.title && <h3 className="detail-section-subtitle">{section.title}</h3>}
             <div className="detail-media-grid">
               {section.media.map((m, j) => (
                 <MediaPlaceholder key={j} label={m.label} type={m.type} embedUrl={m.embedUrl} />
               ))}
             </div>
+            {section.logline && <blockquote className="detail-logline">{section.logline}</blockquote>}
+            {section.note && (Array.isArray(section.note)
+              ? <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  {section.note.map((para, j) => <p key={j} className="detail-description">{para}</p>)}
+                </div>
+              : <p className="detail-description">{section.note}</p>
+            )}
+            {project.rigShortcuts && (
+              <div className="rig-shortcut-row">
+                {project.rigShortcuts.map((s, j) => (
+                  <Link key={j} to={s.to} className="rig-shortcut">
+                    <img src={s.thumb} alt={s.name} className="rig-shortcut-thumb" />
+                    <div className="rig-shortcut-text">
+                      <span className="rig-shortcut-label">Featured Rig</span>
+                      <span className="rig-shortcut-name">{s.name} →</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         ))}
 
@@ -394,10 +429,20 @@ function ProjectDetail() {
         .filter(s => !s.media?.some(m => m.type === 'video'))
         .map((section, i) => {
           if (section.type === 'slider') {
-            return <ImageSlider key={i} images={section.images} caption={section.caption} />
+            return (
+              <div key={i} className="detail-section">
+                {section.title && <h3 className="detail-section-subtitle">{section.title}</h3>}
+                <ImageSlider images={section.images} caption={section.caption} />
+              </div>
+            )
           }
           if (section.type === 'image') {
-            return <SingleImage key={i} src={section.src} caption={section.caption} />
+            return (
+              <div key={i} className="detail-section">
+                {section.title && <h3 className="detail-section-subtitle">{section.title}</h3>}
+                <SingleImage src={section.src} caption={section.caption} />
+              </div>
+            )
           }
           return (
             <div key={i} className="detail-section">
