@@ -13,6 +13,12 @@ const tools = [
     id: 'biped-auto-rig-tool',
   },
   {
+    title: 'Auto Face Rig Tool',
+    category: 'Rigging',
+    description: 'A Maya auto-rigging tool that automatically builds a joint-based face rig, streamlining the setup of facial controls. It supports a data-driven workflow which allows the rig information to be fully restored even after the UI is closed.',
+    id: 'auto-face-rig-tool',
+  },
+  {
     title: 'Scene Assembly Tool',
     category: 'Pipeline',
     description: 'A pipeline tool that cleans animation files and auto-assembles a ready-to-render lighting scene, runs as a standalone batch process outside of Maya.',
@@ -26,13 +32,14 @@ const tools = [
     thumb: gridFillThumb,
     id: 'grid-fill-tool',
   },
+
 ]
 
 function ToolCard({ tool }) {
   const inner = (
     <>
       <div className="tool-thumb">
-        <img src={tool.thumb} alt={tool.title} className="tool-thumb-img" />
+        {tool.thumb && <img src={tool.thumb} alt={tool.title} className="tool-thumb-img" />}
       </div>
       <div className="tool-body">
         <div className="tool-header">

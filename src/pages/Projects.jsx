@@ -14,7 +14,7 @@ const projects = [
     roles: ['Director', 'Production & Pipeline Manager', 'Rigger', 'Concept Artist', 'Technical Artist'],
     thumb: rewiredThumb,
     comingSoon: false,
-    locked: true,
+    locked: false,
   },
   {
     id: 'those-who-see',

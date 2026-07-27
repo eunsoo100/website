@@ -5,6 +5,9 @@ import './ToolDetail.css'
 import autoRigPrep from '../images/tools/auto_rig_prep.png'
 import autoRigBuild1 from '../images/tools/auto_rig_build1.png'
 import autoRigBuild2 from '../images/tools/auto_rig_build2.png'
+import jawJointPlacement from '../images/tools/face_rig_imgs/jaw_joint_placement.gif'
+import buildJawRig from '../images/tools/face_rig_imgs/build_jaw_rig.gif'
+import jawDeformation from '../images/tools/face_rig_imgs/jaw_deformation.gif'
 
 const toolDetails = {
   'biped-auto-rig-tool': {
@@ -59,6 +62,43 @@ const toolDetails = {
       'Repairs broken references and removes junk nodes to ensure a stable production file.',
       'References animation and environment assets using standardized namespaces for pipeline consistency.',
       'Features batch processing with options for overwriting, skipping, or automatic versioning.',
+    ],
+  },
+  'auto-face-rig-tool': {
+    title: 'Auto Face Rig Tool',
+    date: 'July 2026',
+    category: 'Rigging',
+    tech: ['Python', 'Maya API', 'PySide2'],
+    github: 'https://github.com/eunsoo100/biped_auto_rig',
+    sections: [
+      {
+        title: 'Face Rig Tool Overview',
+        note: [
+        'This face rig tool is implemented in biped auto rig tool, but can also be used as a standalone tool. It automatically builds a joint-based face rig with controls for the mouth(jaw), eyes(wip), brows(wip), nose(wip). The tool supports a data-driven workflow which allows the rig information to be fully restored even after the UI is closed.', 
+        'This tool is designed to streamline the setup of the facial rig, allowsing the rigger to focus more on deformation rather than system building.'
+        ]
+      },
+      {
+        title: 'Jaw',
+        videoId: 'GlMDdMEJH-A',
+        steps: [
+          { 
+            title: '1st step: Joint Placement',
+            gif: jawJointPlacement, 
+            caption: 'The user place each joint on the position they want. You can select the vertex/vertices and hit "set joint" button to place the joint. After creating a joint, you can adjust the position/rotation of the joint to match the model. When you are done with all of these process, you can hit "Build Jaw" button to create the jaw rig.' 
+          },
+          { 
+            title: '2nd step: Build Jaw Rig',
+            gif: buildJawRig, 
+            caption: 'The tool automatically creates the jaw rig with the joint placement. It uses ribbon for lips that has primary controls and secondary controls, and they are all connected to the jaw / skull controls.' 
+          },
+          { 
+            title: '3rd step: Deform Jaw',
+            gif: jawDeformation, 
+            caption: 'It is all good to go after binding and paint skin weights! The jaw follow and lip zip attributes are intergrated!' 
+          },
+        ],
+      },
     ],
   },
   'grid-fill-tool': {
@@ -202,26 +242,26 @@ function ToolDetail() {
 
       <div className="detail-divider" />
 
-      <div className="detail-section">
-        {tool.videoId ? (
-          <div className="detail-video-wrapper">
-            <iframe
-              className="detail-video-iframe"
-              src={`https://www.youtube.com/embed/${tool.videoId}`}
-              title="Demo Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        ) : (
-          <MediaPlaceholder label="Demo Video" />
-        )}
-        {tool.github && (
-          <a href={tool.github} target="_blank" rel="noopener noreferrer" className="detail-link-btn">
-            GitHub →
-          </a>
-        )}
-      </div>
+      {(tool.videoId || tool.github) && (
+        <div className="detail-section">
+          {tool.videoId && (
+            <div className="detail-video-wrapper">
+              <iframe
+                className="detail-video-iframe"
+                src={`https://www.youtube.com/embed/${tool.videoId}`}
+                title="Demo Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          )}
+          {tool.github && (
+            <a href={tool.github} target="_blank" rel="noopener noreferrer" className="detail-link-btn">
+              GitHub →
+            </a>
+          )}
+        </div>
+      )}
 
       <div className="detail-divider" />
 
@@ -240,7 +280,7 @@ function ToolDetail() {
         </div>
       ))}
 
-      {tool.featureList && (
+      {tool.featureList && tool.featureList.length > 0 && (
         <div className="detail-section">
           <h2 className="detail-section-heading">Features</h2>
           <ul className="tool-feature-list">
@@ -254,11 +294,30 @@ function ToolDetail() {
       {tool.sections && tool.sections.map((section, i) => (
         <div key={i} className="detail-section">
           <h2 className="detail-section-heading">{section.title}</h2>
+          {section.videoId && (
+            <div className="detail-video-wrapper">
+              <iframe
+                className="detail-video-iframe"
+                src={`https://www.youtube.com/embed/${section.videoId}`}
+                title={section.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          )}
+          {section.steps && section.steps.map((step, j) => (
+            <div key={j} className="detail-section-step">
+              {step.title && <h3 className="detail-step-title">{step.title}</h3>}
+              <img src={step.gif} alt={step.title ?? ''} className="detail-section-img" style={{ cursor: 'zoom-in' }} />
+              {step.caption && <p className="detail-description">{step.caption}</p>}
+            </div>
+          ))}
           {section.image && (
             <MediaPlaceholder label="Image" />
           )}
-          {section.note && (
-            <p className="tool-feature-item">{section.note}</p>
+          {section.note && (Array.isArray(section.note)
+            ? section.note.map((para, j) => <p key={j} className="detail-description">{para}</p>)
+            : <p className="detail-description">{section.note}</p>
           )}
         </div>
       ))}

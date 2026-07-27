@@ -84,7 +84,7 @@
 .detail-section {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 30px;
 }
 
 .detail-section-heading {
@@ -147,6 +147,31 @@
   font-size: 14px;
   line-height: 1.7;
   color: var(--text-semi);
+}
+
+/* Step block inside a section */
+.detail-section-step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-step-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.detail-step-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #333;
 }
 
 /* Section image */
