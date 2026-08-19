@@ -167,7 +167,7 @@ const rigDetails = {
     ],
   },
   rio: {
-    title: 'Rio',
+    title: 'UE Rig',
     tags: ['Unreal Engine'],
     type: 'Human Biped Rig',
     roles: [],
