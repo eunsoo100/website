@@ -32,7 +32,7 @@ const rigs = [
   },
   {
     id: 'rio',
-    title: 'Rio',
+    title: 'UE Rig',
     type: 'Human Biped Rig',
     tags: ['Unreal Engine'],
     thumb: rioThumb,
