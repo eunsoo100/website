@@ -27,13 +27,22 @@ import kikoStill006 from '../images/kiko_rig/kiko_still_005.png'
 import kikoStill007 from '../images/kiko_rig/kiko_still_006.png'
 import kikoStill008 from '../images/kiko_rig/kiko_still_007.png'
 import kikoStill005 from '../images/kiko_rig/kiko_still_008.png'
+import rioModularRig from '../images/rio_rig/rio_modular_rig.png'
+import rioBodyConstruct from '../images/rio_rig/rio_body_module_construct.png'
+import rioBodyForward from '../images/rio_rig/rio_body_module_forward.png'
+import rioBodyBackward from '../images/rio_rig/rio_body_module_backward.png'
+import rioFaceConstruct from '../images/rio_rig/rio_face_module_construct.png'
+import rioFaceForward from '../images/rio_rig/rio_face_module_forward.png'
+import rioGif01 from '../images/rio_rig/rio_gif_001.gif'
+import rioGif02 from '../images/rio_rig/rio_gif_002.gif'
+import rioGif03 from '../images/rio_rig/rio_gif_003.gif'
 
 const kikoStills = [kikoStill001, kikoStill002, kikoStill003, kikoStill004, kikoStill005, kikoStill006, kikoStill007, kikoStill008]
 
 const rigDetails = {
   haetae: {
     title: 'Haetae',
-    production: 'Mr. Kim and Haetae',
+    tags: ['Mr. Kim and Haetae', 'Maya'],
     type: 'Quadruped Rig',
     roles: [],
     gifs: [haetaeCut, haetaeCut2],
@@ -62,7 +71,7 @@ const rigDetails = {
   },
   tobi: {
     title: 'T0B1',
-    production: 'Rewired',
+    tags: ['Rewired', 'Maya'],
     type: 'Character Rig',
     roles: [],
     gifs: [tobiCut],
@@ -97,8 +106,8 @@ const rigDetails = {
   },
   kiko: {
     title: 'Kiko',
-    production: 'Rewired',
-    type: 'Biped Human Rig',
+    tags: ['Rewired', 'Maya'],
+    type: 'Human Biped Rig',
     roles: [],
     stills: kikoStills,
     heroGif: kikoWalkCycle,
@@ -155,6 +164,57 @@ const rigDetails = {
         ],
       },
       { heading: 'Technical Notes' },
+    ],
+  },
+  rio: {
+    title: 'Rio',
+    tags: ['Unreal Engine'],
+    type: 'Human Biped Rig',
+    roles: [],
+    description: [
+      { segments: [
+        { text: 'This is my very first Unreal Engine rigging character. Character is modelled by Makar Malicki, purchased from his ', link: { href: 'https://www.artstation.com/artwork/31d9Rv', label: 'ArtStation' } },
+        { text: ', and I watched tutorials on ', link: { href: 'https://dev.epicgames.com/community/learning/talks-and-demos/jZ74/workshop-rigging-in-unreal-engine', label: 'Rigging in Unreal Engine Workshop' } },
+        { text: '.' },
+      ]},
+      { text: 'The transitioning from Maya to UE5 was challenging, but I really enjoyed learning new system and its technical and efficient workflow.' },
+      { text: "I've built the skeleton and painted skin weights in Maya and imported them into UE5 as FBX file." }
+    ],
+    sections: [
+      {
+        heading: 'Rig Systems',
+        subsections: [
+          {
+            gif: rioModularRig,
+            body: "It's made with two control rig based rig modules, body and face, and later combined into one as a modular rig. \n",
+          },
+          {
+            body: "These are body module's each Construction Event Graphs, Forward Solve Graphs, and Backward Solve Graphs.",
+            gifs: [rioBodyConstruct, rioBodyForward, rioBodyBackward],
+          },
+          {
+            body: "These are face module's each Construction Event Graphs and Forward Solve Graphs.",
+            gifs: [rioFaceConstruct, rioFaceForward],
+          },
+        ],
+      },
+      {
+        heading: 'Deformations',
+        subsections: [
+          {
+            gif: rioGif01,
+            body: "Whole rig gets scaled according to the character's global control, IK leg has stretchable attribute, and IK/FK switching is available for arms and legs, and they auto match the position and key them. Spine is built with splines nodes.",
+          },
+          {
+            gif: rioGif02,
+            body: "The neck uses the same spline-based setup as the spine, with stretch and squash support. The eyelids slide along the eyeball surface, keeping natural contact as they open and close.",
+          },
+          {
+            gif: rioGif03,
+            body: "Face rig has a simple joint based setup, lower and upper lip controls are each following the jaw and skull rotation. It also has a few tweak controls for fine-tuning, as well as the brows where it has the main brow controls and the secondary controls for more detailed adjustments.",
+          },
+        ],
+      },
     ],
   },
 }
@@ -228,7 +288,9 @@ function RigDetail() {
         </div>
         <p className="detail-type">{rig.type}</p>
         <div className="detail-roles">
-          <span className="detail-role">{rig.production}</span>
+          {rig.tags && rig.tags.map((tag, i) => (
+            <span key={i} className="detail-role">{tag}</span>
+          ))}
           {rig.roles.map((role, i) => (
             <span key={i} className="detail-role">{role}</span>
           ))}
@@ -272,7 +334,14 @@ function RigDetail() {
       {rig.description && rig.description.length > 0 && (
         <div className="detail-description-block">
           {rig.description.map((para, i) => (
-            <p key={i} className="detail-description">{para}</p>
+            <p key={i} className="detail-description">
+              {typeof para === 'string' ? para
+                : para.segments ? para.segments.map((seg, k) => (
+                    <span key={k}>{seg.text}{seg.link && <a href={seg.link.href} target="_blank" rel="noopener noreferrer" className="detail-inline-link">{seg.link.label}</a>}</span>
+                  ))
+                : <>{para.text}{para.link && <a href={para.link.href} target="_blank" rel="noopener noreferrer" className="detail-inline-link">{para.link.label}</a>}</>
+              }
+            </p>
           ))}
         </div>
       )}

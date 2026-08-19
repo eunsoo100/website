@@ -93,6 +93,17 @@
   color: var(--text-semi);
 }
 
+.detail-inline-link {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+
+.detail-inline-link:hover {
+  color: var(--accent);
+}
+
 .detail-note {
   font-style: italic;
 }

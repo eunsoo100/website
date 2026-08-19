@@ -3,13 +3,14 @@ import './Rigs.css'
 import kikoThumb from '../images/rigs/kiko_thumbnail.png'
 import tobiThumb from '../images/rigs/T0B1_thumbnail.png'
 import haetaeThumb from '../images/rigs/haetae_thumbnail.png'
+import rioThumb from '../images/rigs/rio_thumbnail.png'
 
 const rigs = [
   {
     id: 'kiko',
     title: 'Kiko',
-    type: 'Biped Human Rig',
-    tags: ['Rewired'],
+    type: 'Human Biped Rig',
+    tags: ['Rewired', 'Maya'],
     thumb: kikoThumb,
     wip: false,
   },
@@ -17,7 +18,7 @@ const rigs = [
     id: 'tobi',
     title: 'T0B1',
     type: 'Robot Rig',
-    tags: ['Rewired'],
+    tags: ['Rewired', 'Maya'],
     thumb: tobiThumb,
     wip: false,
   },
@@ -25,8 +26,16 @@ const rigs = [
     id: 'haetae',
     title: 'Haetae',
     type: 'Quadruped Rig',
-    tags: ['Mr.Kim and Haetae'],
+    tags: ['Mr.Kim and Haetae', 'Maya'],
     thumb: haetaeThumb,
+    wip: false,
+  },
+  {
+    id: 'rio',
+    title: 'Rio',
+    type: 'Human Biped Rig',
+    tags: ['Unreal Engine'],
+    thumb: rioThumb,
     wip: false,
   },
 ]
